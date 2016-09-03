@@ -1,0 +1,23 @@
+FROM centos:latest
+MAINTAINER TiagoRibeiro <tiago.sistema@yahoo.com>
+
+ENV TMP_INSTALL_DIR=/tmp/distrib
+ENV ISC_PACKAGE_INSTANCENAME="cache"
+ENV ISC_PACKAGE_INSTALLDIR="/usr/cachesys"
+ENV ISC_PACKAGE_UNICODE="Y"
+
+RUN mkdir ${TMP_INSTALL_DIR}
+WORKDIR ${TMP_INSTALL_DIR}
+
+ADD cache-2016.1.1.108.0su-lnxrhx64.tar.gz .
+
+RUN yum -y update && yum -y install tar hostname net-tools && yum install gunzip && ln -sf /etc/localtime /usr/share/zoneinfo/Europe/Rome &&./cinstall_silent
+
+RUN ccontrol stop $ISC_PACKAGE_INSTANCENAME quietly
+
+EXPOSE 57772 1972 22
+
+WORKDIR /
+ADD ccontainermain .
+
+ENTRYPOINT  ["/ccontainermain"]
