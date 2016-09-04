@@ -16,7 +16,7 @@ ADD functions /etc/init.d/
 #A versão do Caché a ser instalado.
 #The version of the cache to be installed
 ADD cache-server-2016.1.1.108.0su-1.rh.x86_64.rpm .
-RUN rpm -iUhv cache-server-2016.1.1.108.0su-1.rh.x86_64.rpm
+RUN rpm -ihv --excludedocs cache-server-2016.1.1.108.0su-1.rh.x86_64.rpm
 RUN rm cache-server-2016.1.1.108.0su-1.rh.x86_64.rpm
 
 # Inicia o primeiro start.
@@ -29,7 +29,7 @@ WORKDIR /
 ADD ccontainermain .
 RUN chmod +x ccontainermain
 
-EXPOSE 57772 1972 22
+EXPOSE 57772 57773 1972 23
 
 ENTRYPOINT  ["/ccontainermain"]
 
