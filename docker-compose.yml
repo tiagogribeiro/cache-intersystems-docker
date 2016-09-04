@@ -1,0 +1,19 @@
+cache:
+  #image: tiagoribeiro/cache-database:latest
+  build: .
+
+  # Create directory of data external
+  command: mkdir /usr/cachesys/mgr/data-external
+  mem_limit: 200mb
+  memswap_limit: 200mb
+  volumes:
+    # Map the driver in storage of yours data.
+    - /developer/Ambiente/cache-databases:/usr/cachesys/mgr/data-external
+
+# Run: $ docker-compose up
+# If you use in existing image or execute:
+# $ docker-compose build
+# To build your image and container.
+#
+# Is necessary the installation of docker-compose
+# - sudo apt-get install docker-compose
