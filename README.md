@@ -4,6 +4,7 @@ Caché Intersystens in Docker Container
 https://hub.docker.com/r/tiagoribeiro/cache-database/
 
 # New version
+Structure in two containers, one for gateway other database.
 Using docker-compose for build and execution
 
 Is necessary **docker enginer** and **docker-compose.**
