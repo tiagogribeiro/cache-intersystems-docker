@@ -12,6 +12,6 @@ Is necessary **docker enginer** and **docker-compose.**
 $ docker-compose build<br>
 $ docker-compose up<br>
 
-Access portal for configuration in 172.16.0.2/csp/sys/utilHome.csp
+Access portal for configuration in http://172.16.0.2/csp/sys/utilHome.csp
 
 
