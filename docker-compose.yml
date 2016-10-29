@@ -1,19 +1,36 @@
-cache:
-  #image: tiagoribeiro/cache-database:latest
-  build: .
-
-  # Create directory of data external
-  command: mkdir /usr/cachesys/mgr/data-external
-  mem_limit: 200mb
-  memswap_limit: 200mb
-  volumes:
-    # Map the driver in storage of yours data.
-    - /developer/Ambiente/cache-databases:/usr/cachesys/mgr/data-external
-
-# Run: $ docker-compose up
-# If you use in existing image or execute:
-# $ docker-compose build
-# To build your image and container.
-#
-# Is necessary the installation of docker-compose
-# - sudo apt-get install docker-compose
+version: '2'
+services:
+    app:
+        container_name: 'cache-gateway'
+        build:
+            dockerfile: Dockerfile-gateway
+            context: .
+        mem_limit: 100mb
+        memswap_limit: 100mb
+        domainname: local.weblocus
+        links:
+            - cache
+        networks:
+            app_net:
+                ipv4_address: 172.16.0.2
+    cache:
+        container_name: 'cache-database'
+        build:
+            dockerfile: Dockerfile-database
+            context: .
+        command: mkdir /usr/cachesys/mgr/data-external
+        mem_limit: 200mb
+        memswap_limit: 200mb
+        volumes:
+            - /developer/Ambiente/cache-databases:/usr/cachesys/mgr/data-external
+        networks:
+            app_net:
+                ipv4_address: 172.16.0.3
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.0.0/24
+        gateway: 172.16.0.1
