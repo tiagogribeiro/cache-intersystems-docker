@@ -2,9 +2,8 @@ version: '2'
 services:
     app:
         container_name: 'cache-gateway'
-        build:
-            dockerfile: Dockerfile-gateway
-            context: .
+        build:            
+            context: ./gateway
         mem_limit: 100mb
         memswap_limit: 100mb
         domainname: local.weblocus
@@ -15,9 +14,8 @@ services:
                 ipv4_address: 172.16.0.2
     cache:
         container_name: 'cache-database'
-        build:
-            dockerfile: Dockerfile-database
-            context: .
+        build:            
+            context: ./database
         command: mkdir /usr/cachesys/mgr/data-external
         mem_limit: 200mb
         memswap_limit: 200mb
