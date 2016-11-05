@@ -14,13 +14,12 @@ ENV ISC_PACKAGE_INSTANCENAME="CACHE" \
 RUN mkdir ${TMP_INSTALL_DIR} 
 WORKDIR ${TMP_INSTALL_DIR}
 
-
 RUN wget -c --progress=bar http://download2.intersystems.com/webcinst/201621/7AF8/LINUX/${TMP_FILE_INSTALL} 
 RUN tar -xzf ${TMP_FILE_INSTALL}
 
-ADD manifest.isc ./${TMP_DIRECTORY}
-RUN ./${TMP_DIRECTORY}/cinstall_silent custom_install && rm -rf ${TMP_INSTALL_DIR}    
-    
+RUN mkdir ./${TMP_DIRECTORY}/custom_install
+COPY manifest.isc ./${TMP_DIRECTORY}/custom_install
+RUN ./${TMP_DIRECTORY}/cinstall_silent custom_install && rm -rf ${TMP_INSTALL_DIR}
     
 RUN ccontrol stop $ISC_PACKAGE_INSTANCENAME quietly
 

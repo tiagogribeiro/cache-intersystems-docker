@@ -1,14 +1,14 @@
 #This is the target for a custom (non-client-only) install
 package: custom_install
-#prerequisite: install_mode
+prerequisite: install_mode
 prerequisite: database_server
-#prerequisite: gadget
-#prerequisite: fop
-#prerequisite: renderserver
-#prerequisite: printserver
-#prerequisite: excelexporter
-#prerequisite: callin_components
+prerequisite: gadget
+prerequisite: fop
+prerequisite: renderserver
+prerequisite: printserver
+prerequisite: excelexporter
+prerequisite: callin_components
 #prerequisite: client_components
-#prerequisite: addenda
-#prerequisite: install_confirmation
-#prerequisite: copyright
+prerequisite: addenda
+prerequisite: install_confirmation
+prerequisite: copyright
