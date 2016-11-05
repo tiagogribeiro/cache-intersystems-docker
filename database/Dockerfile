@@ -1,7 +1,7 @@
 FROM centos:latest
 MAINTAINER Tiago G. Ribeiro <tiago.sistema@yahoo.com>
 
-RUN yum -y update && yum -y install which tar hostname net-tools && yum -y clean all
+RUN yum -y update && yum -y install which tar hostname net-tools wget && yum -y clean all
 
 ENV TMP_INSTALL_DIR=/tmp/distrib
 
@@ -13,7 +13,9 @@ ENV ISC_PACKAGE_INSTANCENAME="CACHE" \
 RUN mkdir ${TMP_INSTALL_DIR}
 WORKDIR ${TMP_INSTALL_DIR}
 
-ADD cache-2016.2.0.736.0su-lnxrhx64.tar.gz .
+#ADD cache-2016.2.0.736.0su-lnxrhx64.tar.gz .
+RUN wget http://download2.intersystems.com/webcinst/201621/7AF8/LINUX/cache-2016.2.1.803.0su-lnxrhx64.tar.gz
+RUN tar -xzf cache-2016.2.1.803.0su-lnxrhx64.tar.gz
 
 RUN ./cache-2016.2.0.736.0su-lnxrhx64/cinstall_silent && \
     rm -rf ${TMP_INSTALL_DIR}
