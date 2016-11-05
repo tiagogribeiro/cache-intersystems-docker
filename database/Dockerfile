@@ -17,7 +17,7 @@ WORKDIR ${TMP_INSTALL_DIR}
 RUN wget http://download2.intersystems.com/webcinst/201621/7AF8/LINUX/cache-2016.2.1.803.0su-lnxrhx64.tar.gz
 RUN tar -xzf cache-2016.2.1.803.0su-lnxrhx64.tar.gz
 
-RUN ./cache-2016.2.0.736.0su-lnxrhx64/cinstall_silent && \
+RUN ./cache-2016.2.0.803.0su-lnxrhx64/cinstall_silent && \
     rm -rf ${TMP_INSTALL_DIR}
 
 RUN ccontrol stop $ISC_PACKAGE_INSTANCENAME quietly
